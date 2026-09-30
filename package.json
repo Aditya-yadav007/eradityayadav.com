@@ -1,0 +1,39 @@
+{
+  "homepage": "https://aditya-yadav007.github.io/eradityayadav.com/",
+  "name": "aditya-yadav-portfolio",
+  "version": "1.0.0",
+  "description": "Interactive 3D spatial portfolio built with Three.js, Motion, and vanilla JavaScript — featuring WebGL cosmos, scroll-driven animations, interactive terminal, and character system.",
+  "author": "Aditya Yadav <itsadityayadav35@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aditya-yadav007/eradityayadav.com.git"
+  },
+  "keywords": [
+    "portfolio",
+    "three.js",
+    "3d",
+    "webgl",
+    "ai-ml",
+    "interactive",
+    "vite"
+  ],
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "vite": "^8.3.0"
+  },
+  "dependencies": {
+    "canvas-confetti": "^1.9.4",
+    "motion": "^13.4.4",
+    "three": "^0.186.1"
+  }
+}

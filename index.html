@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cyan">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+  <meta name="theme-color" content="#03060c" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+
+  <!-- SEO & Social Meta -->
+  <title>Aditya Yadav | AI/ML Engineer, Data Analyst &amp; Python Developer</title>
+  <meta name="description"
+    content="Personal 3D portfolio and life journey of Aditya Yadav — Final-Year B.Tech (CSE - AI & ML) Engineer, RAG Systems Architect & Data Analyst." />
+  <meta name="keywords"
+    content="Aditya Yadav, AI/ML Engineer, Data Analyst, Python Developer, RAG, LangChain, FAISS, PyTorch, Portfolio" />
+  <meta name="author" content="Aditya Yadav" />
+  <meta property="og:title" content="Aditya Yadav — AI/ML Engineer &amp; Python Developer" />
+  <meta property="og:description"
+    content="Explore the interactive 3D spatial portfolio and engineering journey of Aditya Yadav." />
+  <meta property="og:type" content="website" />
+
+  <!-- Modern Typography -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link rel="preload" as="style" href="/src/style.css" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+
+<body>
+  <!-- 3D Spatial Canvas Background -->
+  <canvas id="webgl-canvas" class="webgl-background" aria-hidden="true"></canvas>
+
+  <!-- Ambient Glow Vignettes -->
+  <div class="ambient-glow glow-top" aria-hidden="true"></div>
+  <div class="ambient-glow glow-bottom" aria-hidden="true"></div>
+
+  <!-- Scroll Progress Indicator -->
+  <div id="scroll-progress-bar" class="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Navigation Bar -->
+  <header class="site-header" id="site-header">
+    <nav class="nav-container" aria-label="Main Navigation">
+      <a href="#hero" class="brand-logo" id="brand-logo">
+        <span class="brand-symbol">✦</span>
+        <span class="brand-text">AY<span class="brand-accent">.AI</span></span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#journey" class="nav-link" data-nav="journey">Life Journey</a>
+        <a href="#projects" class="nav-link" data-nav="projects">AI &amp; Data Projects</a>
+        <a href="#lab" class="nav-link" data-nav="lab">The Lab &amp; Skills</a>
+        <a href="#terminal-section" class="nav-link" data-nav="terminal">Terminal</a>
+        <a href="#contact" class="nav-link" data-nav="contact">Contact</a>
+      </div>
+
+      <div class="header-actions">
+        <!-- Audio Synthesizer Toggle -->
+        <button id="audio-toggle" class="control-btn" title="Toggle Spatial Audio Synth"
+          aria-label="Toggle Spatial Audio">
+          <span class="audio-bars" aria-hidden="true">
+            <span class="bar bar-1"></span>
+            <span class="bar bar-2"></span>
+            <span class="bar bar-3"></span>
+          </span>
+          <span class="control-label">SOUND</span>
+        </button>
+
+        <!-- Theme Accent Switcher -->
+        <div class="theme-switcher" title="Cycle Color Theme">
+          <button class="theme-dot theme-cyan active" data-theme-btn="cyan" aria-label="Cyan Cyber Theme"></button>
+          <button class="theme-dot theme-violet" data-theme-btn="violet" aria-label="Violet Nebula Theme"></button>
+          <button class="theme-dot theme-emerald" data-theme-btn="emerald" aria-label="Emerald Matrix Theme"></button>
+        </div>
+
+        <!-- Download Resume Button -->
+        <a href="/assets/Aditya_Yadav_Resume_Final.pdf" download="Aditya_Yadav_Resume.pdf" target="_blank" rel="noopener noreferrer"
+          class="resume-pill-btn" title="Download Official Resume (PDF)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span>Resume PDF</span>
+        </a>
+
+        <!-- Connect CTA -->
+        <a href="#contact" class="cta-pill-btn">
+          <span>Get in Touch</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Toggle Navigation Menu"
+          aria-expanded="false">
+          <span class="hamburger-line line-1"></span>
+          <span class="hamburger-line line-2"></span>
+          <span class="hamburger-line line-3"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer" aria-hidden="true">
+    <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-header">
+        <a href="#hero" class="brand-logo" id="mobile-brand-logo">
+          <span class="brand-symbol">✦</span>
+          <span class="brand-text">ADITYA<span class="brand-accent">.AI</span></span>
+        </a>
+        <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close navigation menu">×</button>
+      </div>
+      <div class="mobile-nav-body">
+        <nav class="mobile-nav-links">
+          <a href="#hero" class="mobile-nav-link" data-mobile-nav="hero">
+            <span class="mobile-nav-num">01</span>
+            <span>Home</span>
+          </a>
+          <a href="#journey" class="mobile-nav-link" data-mobile-nav="journey">
+            <span class="mobile-nav-num">02</span>
+            <span>Life Journey</span>
+          </a>
+          <a href="#projects" class="mobile-nav-link" data-mobile-nav="projects">
+            <span class="mobile-nav-num">03</span>
+            <span>AI &amp; Data Projects</span>
+          </a>
+          <a href="#lab" class="mobile-nav-link" data-mobile-nav="lab">
+            <span class="mobile-nav-num">04</span>
+            <span>The Lab &amp; Skills</span>
+          </a>
+          <a href="#terminal-section" class="mobile-nav-link" data-mobile-nav="terminal">
+            <span class="mobile-nav-num">05</span>
+            <span>Terminal</span>
+          </a>
+          <a href="#contact" class="mobile-nav-link" data-mobile-nav="contact">
+            <span class="mobile-nav-num">06</span>
+            <span>Contact</span>
+          </a>
+        </nav>
+        <div class="mobile-nav-extras">
+          <div class="mobile-theme-row">
+            <span class="m-theme-label">COLOR THEME:</span>
+            <div class="theme-switcher">
+              <button class="theme-dot theme-cyan active" data-theme-btn="cyan" aria-label="Cyan Cyber Theme"></button>
+              <button class="theme-dot theme-violet" data-theme-btn="violet" aria-label="Violet Nebula Theme"></button>
+              <button class="theme-dot theme-emerald" data-theme-btn="emerald"
+                aria-label="Emerald Matrix Theme"></button>
+            </div>
+          </div>
+          <a href="/assets/Aditya_Yadav_Resume_Final.pdf" download="Aditya_Yadav_Resume.pdf"
+            class="btn-primary mobile-nav-resume-btn" target="_blank" rel="noopener noreferrer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Download Resume (PDF)</span>
+          </a>
+          <a href="#contact" class="btn-secondary mobile-nav-contact-btn">
+            <span>Transmit Message</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Container -->
+  <main id="main-content">
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="status-badge" id="hero-status">
+            <span class="status-pulse"></span>
+            <span class="status-text">OPEN FOR AI/ML &amp; DATA ANALYST ROLES • 2026 COHORT</span>
+          </div>
+
+          <h1 class="hero-title">
+            AI &amp; ML ENGINEER<br />
+            <span class="gradient-text">DATA ANALYST</span><br />
+            &amp; PYTHON DEV
+          </h1>
+
+          <p class="hero-description">
+            Hi, I’m <strong>Aditya Yadav</strong>. Final-year <strong>B.Tech (CSE – AI &amp; ML)</strong> student at
+            United College of Engineering &amp; Research, Prayagraj. I engineer real-world machine learning systems,
+            sub-15ms RAG pipelines, data analytics workflows, and cloud-integrated applications.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#projects" class="btn-primary" id="btn-view-works">
+              <span>View AI Projects</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M17 7H7M17 7V17" />
+              </svg>
+            </a>
+            <a href="/assets/Aditya_Yadav_Resume_Final.pdf" download="Aditya_Yadav_Resume.pdf" class="btn-secondary"
+              id="btn-download-resume" target="_blank" rel="noopener noreferrer">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Download Resume</span>
+            </a>
+            <a href="#journey" class="btn-secondary" id="btn-explore-journey">
+              <span>Explore My Journey</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M19 12l-7 7-7-7" />
+              </svg>
+            </a>
+            <button class="btn-terminal-quick" id="btn-open-terminal" title="Launch CLI">
+              <span class="code-bracket">&gt;_</span> CLI
+            </button>
+          </div>
+
+          <div class="hero-stats-strip">
+            <div class="stat-item">
+              <span class="stat-number">7.48</span><span class="stat-plus">CGPA</span>
+              <span class="stat-label">B.Tech AI &amp; ML</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number" data-target="7700">7700</span><span class="stat-plus">+</span>
+              <span class="stat-label">Netflix Titles Analyzed</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number" data-target="100">100</span><span class="stat-plus">k+</span>
+              <span class="stat-label">Data Points Modeled</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">13.6</span><span class="stat-plus">ms</span>
+              <span class="stat-label">RAG Retrieval Latency</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3D Interactive Hero Character Hologram Card -->
+        <div class="hero-visual" id="hero-card-container">
+          <div class="hero-3d-card" id="hero-3d-card">
+            <div class="card-glow-reflection" id="card-glow"></div>
+            <div class="hologram-rings" aria-hidden="true">
+              <div class="holo-ring holo-ring-1"></div>
+              <div class="holo-ring holo-ring-2"></div>
+              <div class="holo-ring holo-ring-3"></div>
+            </div>
+
+            <!-- Floating 3D Badge Indicators -->
+            <div class="floating-tech-badge badge-top-left">
+              <span class="badge-icon">🧠</span>
+              <div class="badge-text">
+                <span class="b-title">GenAI &amp; RAG</span>
+                <span class="b-sub">LangChain / FAISS</span>
+              </div>
+            </div>
+
+            <div class="floating-tech-badge badge-top-right">
+              <span class="badge-icon">📊</span>
+              <div class="badge-text">
+                <span class="b-title">Data Analytics</span>
+                <span class="b-sub">Pandas / NumPy</span>
+              </div>
+            </div>
+
+            <div class="floating-tech-badge badge-bottom-left">
+              <span class="badge-icon">🐍</span>
+              <div class="badge-text">
+                <span class="b-title">Python Core</span>
+                <span class="b-sub">Flask / Django / ML</span>
+              </div>
+            </div>
+
+            <!-- Main Character Image Cutout -->
+            <div class="character-portal-frame">
+              <img src="/assets/character/09_hero_front.png" alt="Aditya Yadav - AI/ML Engineer and Python Developer"
+                class="character-hero-img" id="hero-character-image" loading="eager" />
+              <div class="character-ground-shadow"></div>
+            </div>
+
+            <!-- Interactive Pose Selector Chips -->
+            <div class="pose-quick-dock">
+              <span class="dock-caption">QUICK POSE:</span>
+              <button class="pose-chip active" data-pose-src="/assets/character/09_hero_front.png"
+                title="Hero Front Pose">Hero</button>
+              <button class="pose-chip" data-pose-src="/assets/character/15_welcome_gesture.png"
+                title="Welcome Pose">Welcome</button>
+              <button class="pose-chip" data-pose-src="/assets/character/12_thinking.png"
+                title="Thinking / Problem Solving">Solve</button>
+              <button class="pose-chip" data-pose-src="/assets/character/11_sitting_working.png"
+                title="Coding in Chair">Deep Code</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator Cue -->
+      <a href="#journey" class="scroll-cue" aria-label="Scroll down">
+        <span class="cue-mouse">
+          <span class="cue-wheel"></span>
+        </span>
+        <span class="cue-text">SCROLL TO WALK ADITYA'S LIFE</span>
+      </a>
+    </section>
+
+    <!-- SECTION 2: LIFE JOURNEY ("LIFE TILL NOW") -->
+    <section id="journey" class="section journey-section">
+      <div class="section-header">
+        <div class="section-tag">
+          <span class="tag-dot"></span>
+          <span>CHRONOLOGY OF DILIGENCE &amp; MASTERY</span>
+        </div>
+        <h2 class="section-title">THE ROAD TO AI: LIFE TILL NOW</h2>
+        <p class="section-subtitle">
+          From schooling at Mary Lucas and a technical diploma to building production-grade RAG systems, machine
+          learning models, and big data pipelines.
+        </p>
+      </div>
+
+      <!-- Interactive Walking Companion Track -->
+      <div class="walking-track-container" id="walking-track">
+        <div class="track-hud">
+          <div class="hud-left">
+            <span class="hud-label">WALKER STATUS:</span>
+            <span class="hud-value" id="walker-status-text">Schooling &amp; Foundational Code...</span>
+          </div>
+          <div class="hud-right">
+            <span class="hud-label">CHAPTER:</span>
+            <span class="hud-value" id="walker-chapter-text">01 / 04</span>
+          </div>
+        </div>
+
+        <div class="track-visual-rail">
+          <!-- The Dynamic Animated Character Sprite that advances as you scrub/scroll -->
+          <div class="walker-avatar" id="walker-avatar">
+            <div class="walker-speech" id="walker-speech">
+              "Let's walk through my academic &amp; engineering journey!"
+            </div>
+            <img src="/assets/character/02_walking_1.png" alt="Aditya walking along timeline" class="walker-img"
+              id="walker-sprite" />
+            <div class="walker-shadow"></div>
+          </div>
+          <div class="track-line-progress" id="track-line-progress"></div>
+        </div>
+      </div>
+
+      <!-- Timeline Chapter Cards -->
+      <div class="timeline-chapters">
+
+        <!-- Chapter 1 -->
+        <article class="chapter-card" data-chapter="1" id="chapter-1">
+          <div class="chapter-badge">2018 — 2021</div>
+          <div class="chapter-number">01</div>
+          <div class="chapter-content">
+            <div class="chapter-meta">
+              <span class="chapter-icon">🏫</span>
+              <span class="chapter-phase">FOUNDATIONAL EDUCATION</span>
+            </div>
+            <h3 class="chapter-heading">Schooling &amp; The Early Spark at Mary Lucas</h3>
+            <p class="chapter-text">
+              Completed high school and intermediate education at Mary Lucas School &amp; College, Prayagraj under the
+              ICSE &amp; ISC curriculum. Developed strong analytical thinking, mathematics discipline, and initial
+              fascination with computer science logic and problem-solving.
+            </p>
+            <div class="chapter-tags">
+              <span class="chip">Mary Lucas School &amp; College</span>
+              <span class="chip">ICSE &amp; ISC Boards</span>
+              <span class="chip">Mathematics &amp; Logic</span>
+              <span class="chip">First Code Sparks</span>
+            </div>
+            <blockquote class="chapter-quote">
+              "Discipline in early schooling built the foundation for breaking down complex algorithmic problems."
+            </blockquote>
+          </div>
+          <div class="chapter-side-visual">
+            <img src="/assets/character/01_standing.png" alt="Aditya standing confident" class="chapter-char-img" />
+          </div>
+        </article>
+
+        <!-- Chapter 2 -->
+        <article class="chapter-card" data-chapter="2" id="chapter-2">
+          <div class="chapter-badge">2021 — 2023</div>
+          <div class="chapter-number">02</div>
+          <div class="chapter-content">
+            <div class="chapter-meta">
+              <span class="chapter-icon">⚙️</span>
+              <span class="chapter-phase">DIPLOMA &amp; CORE SOFTWARE</span>
+            </div>
+            <h3 class="chapter-heading">Diploma in IT &amp; Android Development Rigor</h3>
+            <p class="chapter-text">
+              Graduated with <strong>76% distinction</strong> in Diploma in Information Technology from United College
+              of Engineering &amp; Research / Handia Polytechnic. Immersed in Data Structures, OOP, C/C++, DBMS, and
+              Core Java. Built 5+ real-time Android applications at NetCamp, boosting performance by 30% and integrating
+              Firebase cloud sync.
+            </p>
+            <div class="chapter-tags">
+              <span class="chip">Diploma in IT (76%)</span>
+              <span class="chip">NetCamp Android Internship</span>
+              <span class="chip">Core Java &amp; C/C++</span>
+              <span class="chip">Firebase Real-time Sync</span>
+            </div>
+            <blockquote class="chapter-quote">
+              "Writing real Android apps and managing Firebase data sync taught me what production reliability actually
+              means."
+            </blockquote>
+          </div>
+          <div class="chapter-side-visual">
+            <img src="/assets/character/06_picking_laptop.png" alt="Aditya taking command of laptop"
+              class="chapter-char-img" />
+          </div>
+        </article>
+
+        <!-- Chapter 3 -->
+        <article class="chapter-card" data-chapter="3" id="chapter-3">
+          <div class="chapter-badge">2023 — 2025</div>
+          <div class="chapter-number">03</div>
+          <div class="chapter-content">
+            <div class="chapter-meta">
+              <span class="chapter-icon">📊</span>
+              <span class="chapter-phase">B.TECH SPECIALIZATION &amp; BIG DATA</span>
+            </div>
+            <h3 class="chapter-heading">B.Tech (CSE - AI &amp; ML) &amp; Industry Internships</h3>
+            <p class="chapter-text">
+              Pursuing B.Tech in CSE with specialization in AI &amp; Machine Learning at UCER (maintaining a
+              <strong>7.48 CGPA</strong>). Delivered two high-impact internships:
+              <br />• <strong>AICTE VOIS Internship:</strong> Analyzed 7,700+ Netflix titles across 60+ genres,
+              generating 5 visual business intelligence analyses with Python &amp; Matplotlib.
+              <br />• <strong>IBM SkillBuild AI &amp; Cloud Internship:</strong> Developed an intelligent catalog search
+              chatbot trained on 1,000+ FAQs, reducing support escalations by 50% and boosting user engagement by 35%.
+            </p>
+            <div class="chapter-tags">
+              <span class="chip chip-accent">B.Tech AI &amp; ML (7.48 CGPA)</span>
+              <span class="chip chip-accent">AICTE VOIS (Netflix EDA)</span>
+              <span class="chip chip-accent">IBM SkillBuild (AI Chatbot)</span>
+              <span class="chip">Pandas / Matplotlib / EDA</span>
+            </div>
+            <blockquote class="chapter-quote">
+              "Data tells profound stories when you ask the right statistical questions."
+            </blockquote>
+          </div>
+          <div class="chapter-side-visual">
+            <img src="/assets/character/11_sitting_working.png" alt="Aditya sitting and working in chair"
+              class="chapter-char-img" />
+          </div>
+        </article>
+
+        <!-- Chapter 4 -->
+        <article class="chapter-card chapter-featured" data-chapter="4" id="chapter-4">
+          <div class="chapter-badge">2025 — 2026</div>
+          <div class="chapter-number">04</div>
+          <div class="chapter-content">
+            <div class="chapter-meta">
+              <span class="chapter-icon">🔮</span>
+              <span class="chapter-phase">PRESENT &amp; ENTERPRISE RAG</span>
+            </div>
+            <h3 class="chapter-heading">DocChat, BachatAI &amp; Production AI Systems</h3>
+            <p class="chapter-text">
+              Architecting production-ready AI applications:
+              <br />• <strong>DocChat:</strong> Enterprise RAG chatbot indexing 933-page multi-document corpora (1,823
+              FAISS chunks) with <strong>13.6ms average retrieval latency</strong> and 10/10 top-3 passage recall.
+              <br />• <strong>BachatAI:</strong> Machine learning personal finance system trained on 100k+ Kaggle
+              transactions achieving 87–90% recommendation accuracy, integrated with conversational NLP.
+              <br />• <strong>Big Data Modeling:</strong> 100k+ Airbnb listings regression models and Twitter real-time
+              sentiment analysis.
+            </p>
+            <div class="chapter-tags">
+              <span class="chip chip-accent">DocChat RAG (13.6ms Latency)</span>
+              <span class="chip chip-accent">BachatAI (100k+ Dataset)</span>
+              <span class="chip">LangChain &amp; FAISS</span>
+              <span class="chip">PyTorch &amp; Scikit-learn</span>
+            </div>
+            <blockquote class="chapter-quote">
+              "Building AI isn't just about calling an API; it is about prompt engineering, sub-second vector search,
+              and verifiable accuracy."
+            </blockquote>
+          </div>
+          <div class="chapter-side-visual">
+            <img src="/assets/character/10_hero_side.png" alt="Aditya ready for AI engineering"
+              class="chapter-char-img" />
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SECTION 3: REAL PROJECTS SHOWCASE -->
+    <section id="projects" class="section projects-section">
+      <div class="section-header">
+        <div class="section-tag">
+          <span class="tag-dot"></span>
+          <span>CURATED AI &amp; DATA SYSTEMS</span>
+        </div>
+        <h2 class="section-title">FLAGSHIP AI &amp; ML PRODUCTIONS</h2>
+        <p class="section-subtitle">
+          Hover and tilt to explore 3D depth cards. Click any project card to inspect the complete pipeline
+          architecture, benchmarks, and data results.
+        </p>
+      </div>
+
+      <!-- Character Pointer Annotation -->
+      <div class="character-annotation-box">
+        <img src="/assets/character/13_pointing_right.png" alt="Aditya pointing to projects"
+          class="annotation-char-img" />
+        <div class="annotation-bubble">
+          <strong>"Explore my core engineering work:"</strong> From sub-15ms FAISS vector retrieval on 900+ pages to
+          machine learning models trained on 100,000+ financial transactions and 7 live deployed web applications.
+        </div>
+      </div>
+
+      <!-- Interactive Projects Filter Bar -->
+      <div class="projects-filter-bar" role="tablist" aria-label="Project categories">
+        <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">
+          <span>All Systems</span>
+          <span class="tab-count">9</span>
+        </button>
+        <button class="filter-tab" data-filter="live" role="tab" aria-selected="false">
+          <span>🚀 Live Deployed</span>
+          <span class="tab-count">7</span>
+        </button>
+        <button class="filter-tab" data-filter="aiml" role="tab" aria-selected="false">
+          <span>🧠 AI &amp; Data Science</span>
+          <span class="tab-count">5</span>
+        </button>
+        <button class="filter-tab" data-filter="web" role="tab" aria-selected="false">
+          <span>🎮 Web &amp; Interactive</span>
+          <span class="tab-count">4</span>
+        </button>
+      </div>
+
+      <!-- Projects 3D Perspective Grid -->
+      <div class="projects-grid" id="projects-grid">
+
+        <!-- Project 1: DocChat AI RAG Chatbot -->
+        <div class="project-card" data-project-id="docchat" data-category="aiml" tabindex="0">
+          <div class="card-inner-3d">
+            <div class="project-media">
+              <img src="/assets/projects/omni_ai.jpg" alt="DocChat AI Document QA System" class="project-img"
+                loading="lazy" />
+              <div class="media-overlay">
+                <span class="live-pill">● RAG PIPELINE</span>
+                <span class="metric-pill">13.6ms Retrieval</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-tech-row">
+                <span class="tech-tag">RAG</span>
+                <span class="tech-tag">FAISS</span>
+                <span class="tech-tag">Sentence Transformers</span>
+                <span class="tech-tag">LangChain</span>
+                <span class="tech-tag">Flask</span>
+              </div>
+              <h3 class="project-title">DocChat — AI Intelligent Document Q&amp;A</h3>
+              <p class="project-desc">
+                Indexed and retrieved answers from a 933-page 4-document corpus (1,823 FAISS chunks). Achieved 13.6ms
+                avg retrieval latency (p95: 18.3ms), 10/10 passage recall, cutting manual document search time from 3–5
+                minutes to under 30 seconds (~6–10x speedup).
+              </p>
+              <div class="project-footer">
+                <div class="footer-actions-group">
+                  <a href="https://github.com/Aditya-yadav007" target="_blank" rel="noopener noreferrer"
+                    class="btn-live-preview btn-repo-link" onclick="event.stopPropagation()">
+                    <span>GitHub Repo</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <button class="btn-inspect-project" data-modal="docchat">
+                    <span>Inspect</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+                <div class="project-status-chip">10/10 Recall</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: BachatAI Personal Finance System -->
+        <div class="project-card" data-project-id="bachatai" data-category="aiml" tabindex="0">
+          <div class="card-inner-3d">
+            <div class="project-media">
+              <img src="/assets/projects/aether_finance.jpg" alt="BachatAI Finance Dashboard" class="project-img"
+                loading="lazy" />
+              <div class="media-overlay">
+                <span class="live-pill">● ML RECOMMENDATION</span>
+                <span class="metric-pill">100k+ Transactions</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-tech-row">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Scikit-learn</span>
+                <span class="tech-tag">NLP Chatbot</span>
+                <span class="tech-tag">Pandas</span>
+                <span class="tech-tag">Streamlit</span>
+              </div>
+              <h3 class="project-title">BachatAI — AI Personal Finance System</h3>
+              <p class="project-desc">
+                Trained and evaluated recommendation models on 100k+ Kaggle financial transactions across 100+ users
+                over 12 months, achieving 87–90% budgeting accuracy. Features an interactive dashboard tracking 6
+                categories and an NLP chatbot for financial queries.
+              </p>
+              <div class="project-footer">
+                <div class="footer-actions-group">
+                  <a href="https://github.com/Aditya-yadav007/BachatAI" target="_blank" rel="noopener noreferrer"
+                    class="btn-live-preview btn-repo-link" onclick="event.stopPropagation()">
+                    <span>GitHub Repo</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <button class="btn-inspect-project" data-modal="bachatai">
+                    <span>Inspect</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+                <div class="project-status-chip">87–90% Accuracy</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3: Netflix Content Trends & Interactive Analytics Dashboard (LIVE) -->
+        <div class="project-card" data-project-id="netflix" data-category="live aiml" tabindex="0">
+          <div class="card-inner-3d">
+            <div class="project-media">
+              <img src="/assets/projects/netflix_dashboard.png" alt="Netflix Content Trends Analysis"
+                class="project-img" loading="lazy" />
+              <div class="media-overlay">
+                <span class="live-pill">● LIVE DEPLOYED</span>
+                <span class="metric-pill">7.7k+ Titles • AICTE VOIS</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-tech-row">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Pandas</span>
+                <span class="tech-tag">Matplotlib</span>
+                <span class="tech-tag">EDA</span>
+                <span class="tech-tag">GitHub Pages</span>
+              </div>
+              <h3 class="project-title">Netflix Content Trends &amp; Dashboard</h3>
+              <p class="project-desc">
+                Interactive big data analytics dashboard and exploratory analysis of 7,700+ Netflix titles across 60+
+                genres developed as the Major Project for AICTE VOIS Internship. Explores genre distributions, release
+                velocity, and regional market acquisition trends.
+              </p>
+              <div class="project-footer">
+                <div class="footer-actions-group">
+                  <a href="https://aditya-yadav007.github.io/VOIS_AICTE_Oct2025_MajorProject_Aditya-Yadav-/"
+                    target="_blank" rel="noopener noreferrer" class="btn-live-preview"
+                    onclick="event.stopPropagation()">
+                    <span>🚀 Live Demo</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <button class="btn-inspect-project" data-modal="netflix">
+                    <span>Inspect</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+                <div class="project-status-chip">● Live Online</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4: Airbnb Open Data Intelligence (LIVE) -->
+        <div class="project-card" data-project-id="airbnb" data-category="live aiml" tabindex="0">
+          <div class="card-inner-3d">
+            <div class="project-media">
+              <img src="/assets/projects/airbnb_analysis.png" alt="Airbnb Open Data Analysis" class="project-img"
+                loading="lazy" />
+              <div class="media-overlay">
+                <span class="live-pill">● LIVE DEPLOYED</span>
+                <span class="metric-pill">100k+ Listings</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-tech-row">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Pandas</span>
+                <span class="tech-tag">Seaborn</span>
+                <span class="tech-tag">Regression</span>
+                <span class="tech-tag">GitHub Pages</span>
+              </div>
+              <h3 class="project-title">Airbnb Open Data Market Intelligence</h3>
+              <p class="project-desc">
+                Cleaned and analyzed 100,000+ Airbnb listings uncovering pricing dynamics, neighborhood demand, and host
+                availability. Found weak correlation (r = 0.14) in host inventory and built predictive models with live
+                GitHub Pages report.
+              </p>
+              <div class="project-footer">
+                <div class="footer-actions-group">
+                  <a href="https://aditya-yadav007.github.io/VOIS_AICTE_Oct2025_Aditya_Yadav/" target="_blank"
+                    rel="noopener noreferrer" class="btn-live-preview" onclick="event.stopPropagation()">
+                    <span>🚀 Live Demo</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <button class="btn-inspect-project" data-modal="airbnb">
+                    <span>Inspect</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+                <div class="project-status-chip">● Live Online</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5: Twitter Sentiment Analysis App (LIVE STREAMLIT) -->
+        <div class="project-card" data-project-id="twitter" data-category="live aiml" tabindex="0">
+          <div class="card-inner-3d">
+            <div class="project-media">
+              <img src="/assets/projects/twitter_sentiment.png" alt="Twitter Sentiment Analysis Streamlit App"
+                class="project-img" loading="lazy" />
+              <div class="media-overlay">
+                <span class="live-pill">● LIVE STREAMLIT</span>
+                <span class="metric-pill">Real-time NLP</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-tech-row">
+                <span class="tech-tag">Streamlit</span>
+                <span class="tech-tag">Scikit-learn</span>
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">NLP</span>
+                <span class="tech-tag">Cloud App</span>
+              </div>
+              <h3 class="project-title">Twitter Real-Time Sentiment Analysis</h3>
+              <p class="project-desc">
+                Interactive NLP web application deployed on Streamlit Cloud that classifies tweets as positive,
+                negative, or neutral with live visual distributions, probability confidence gauges, and batch CSV
+                dataset processing.
+              </p>
+              <div class="project-footer">
+                <div class="footer-actions-group">
+                  <a href="https://aditya-yadav007-twitter-sentiment-analysis-app-hmewpp.streamlit.app" target="_blank"
+                    rel="noopener noreferrer" class="btn-live-preview" onclick="event.stopPropagation()">
+                    <span>🚀 Live Demo</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <button class="btn-inspect-project" data-modal="twitter">
+                    <span>Inspect</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+                <div class="project-status-chip">● Live Cloud App</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 6: Interactive Tic Tac Toe Game (LIVE GITHUB PAGES) -->
+        <div class="project-card" data-project-id="tictactoe" data-category="live web" tabindex="0">
+          <div class="card-inner-3d">
+            <div class="project-media">
+              <img src="/assets/projects/tictactoe_game.png" alt="Tic Tac Toe Interactive Game" class="project-img"
+                loading="lazy" />
+              <div class="media-overlay">
+                <span class="live-pill">● LIVE DEPLOYED</span>
+                <span class="metric-pill">Interactive Game</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-tech-row">
+                <span class="tech-tag">JavaScript (ES6+)</span>
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">Game Logic</span>
+                <span class="tech-tag">GitHub Pages</span>
+              </div>
+              <h3 class="project-title">Tic Tac Toe Interactive Game Engine</h3>
+              <p class="project-desc">
+                A modern, responsive browser game built with vanilla HTML5, CSS3, and JavaScript featuring move history,
+                active turn tracking, intelligent win detection, and responsive canvas layout deployed on GitHub Pages.
+              </p>
+              <div class="project-footer">
+                <div class="footer-actions-group">
+                  <a href="https://aditya-yadav007.github.io/myGame/" target="_blank" rel="noopener noreferrer"
+                    class="btn-live-preview" onclick="event.stopPropagation()">
+                    <span>🚀 Live Demo</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <button class="btn-inspect-project" data-modal="tictactoe">
+                    <span>Inspect</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+                <div class="project-status-chip">● Live Online</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 7: Interactive Picture Slider Puzzle Game (LIVE GITHUB PAGES) -->
+        <div class="project-card" data-project-id="puzzle" data-category="live web" tabindex="0">
+          <div class="card-inner-3d">
+            <div class="project-media">
+              <img src="/assets/projects/puzzle_game.jpg" alt="Interactive Picture Slider Puzzle Game"
+                class="project-img" loading="lazy" />
+              <div class="media-overlay">
+                <span class="live-pill">● LIVE DEPLOYED</span>
+                <span class="metric-pill">Canvas Game</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-tech-row">
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">Matrix Logic</span>
+                <span class="tech-tag">GitHub Pages</span>
+              </div>
+              <h3 class="project-title">Interactive Slider Picture Puzzle Game</h3>
+              <p class="project-desc">
+                Engaging picture tile-sliding puzzle game built with HTML, CSS, and JavaScript. Features interactive
+                tile rearranging, move counting, shuffle algorithms, and image reconstruction logic hosted live on
+                GitHub Pages.
+              </p>
+              <div class="project-footer">
+                <div class="footer-actions-group">
+                  <a href="https://aditya-yadav007.github.io/puzzle/" target="_blank" rel="noopener noreferrer"
+                    class="btn-live-preview" onclick="event.stopPropagation()">
+                    <span>🚀 Live Demo</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <button class="btn-inspect-project" data-modal="puzzle">
+                    <span>Inspect</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+                <div class="project-status-chip">● Live Online</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 8: Responsive Web Development Bookstore Portal (LIVE GITHUB PAGES) -->
+        <div class="project-card" data-project-id="wdpage" data-category="live web" tabindex="0">
+          <div class="card-inner-3d">
+            <div class="project-media">
+              <img src="/assets/projects/wdpage_preview.jpeg" alt="Responsive Web Development Bookstore Portal"
+                class="project-img" loading="lazy" />
+              <div class="media-overlay">
+                <span class="live-pill">● LIVE DEPLOYED</span>
+                <span class="metric-pill">Store Portal</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-tech-row">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS Grid</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Responsive UI</span>
+                <span class="tech-tag">GitHub Pages</span>
+              </div>
+              <h3 class="project-title">Responsive Web Dev Bookstore Portal</h3>
+              <p class="project-desc">
+                A complete responsive web portal and catalog showcasing curated programming &amp; web development
+                textbooks, pricing cards, search filtering, and modern responsive layouts hosted live on GitHub Pages.
+              </p>
+              <div class="project-footer">
+                <div class="footer-actions-group">
+                  <a href="https://aditya-yadav007.github.io/wdpage/" target="_blank" rel="noopener noreferrer"
+                    class="btn-live-preview" onclick="event.stopPropagation()">
+                    <span>🚀 Live Demo</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <button class="btn-inspect-project" data-modal="wdpage">
+                    <span>Inspect</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+                <div class="project-status-chip">● Live Online</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 9: Interactive Developer Profile & Quiz Engine (LIVE GITHUB PAGES) -->
+        <div class="project-card" data-project-id="myprofile" data-category="live web" tabindex="0">
+          <div class="card-inner-3d">
+            <div class="project-media">
+              <img src="/assets/aditya_photo.jpg" alt="Interactive Developer Profile and Quiz Engine"
+                class="project-img" loading="lazy" />
+              <div class="media-overlay">
+                <span class="live-pill">● LIVE DEPLOYED</span>
+                <span class="metric-pill">Interactive Quiz</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-tech-row">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Quiz Logic</span>
+                <span class="tech-tag">GitHub Pages</span>
+              </div>
+              <h3 class="project-title">Interactive Developer Profile &amp; Quiz Engine</h3>
+              <p class="project-desc">
+                Custom personal web portal featuring developer biography, career milestones, skill showcase, and an
+                interactive JavaScript knowledge quiz engine with real-time score calculation hosted live on GitHub
+                Pages.
+              </p>
+              <div class="project-footer">
+                <div class="footer-actions-group">
+                  <a href="https://aditya-yadav007.github.io/my_profile/" target="_blank" rel="noopener noreferrer"
+                    class="btn-live-preview" onclick="event.stopPropagation()">
+                    <span>🚀 Live Demo</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <button class="btn-inspect-project" data-modal="myprofile">
+                    <span>Inspect</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+                <div class="project-status-chip">● Live Online</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 4: THE LAB & WORKSTATION (TECH STACK & CERTIFICATIONS) -->
+    <section id="lab" class="section lab-section">
+      <div class="section-header">
+        <div class="section-tag">
+          <span class="tag-dot"></span>
+          <span>WHERE MODELS ARE TRAINED &amp; TUNED</span>
+        </div>
+        <h2 class="section-title">THE LAB, TECH MATRIX &amp; CERTIFICATIONS</h2>
+        <p class="section-subtitle">
+          Click the interactive hotspots on the workstation gear to explore my core AI tools, Python data environment,
+          and verified industry credentials.
+        </p>
+      </div>
+
+      <div class="lab-interactive-stage">
+        <!-- The Visual Studio Set with Cutouts -->
+        <div class="stage-room">
+          <div class="stage-desk-wrap">
+            <img src="/assets/character/19_desk_table.png" alt="Developer Minimalist Desk" class="stage-desk-img" />
+          </div>
+          <div class="stage-chair-wrap">
+            <img src="/assets/character/20_office_chair.png" alt="Ergonomic Developer Chair" class="stage-chair-img" />
+          </div>
+          <div class="stage-laptop-wrap">
+            <img src="/assets/character/17_laptop_open_front.png" alt="High-Performance Developer Laptop"
+              class="stage-laptop-img" />
+            <div class="laptop-screen-glow"></div>
+          </div>
+
+          <!-- Hotspot 1: AI & ML Engine -->
+          <button class="hotspot hotspot-laptop active" data-hotspot="aiml" aria-label="Inspect AI/ML &amp; RAG Stack">
+            <span class="hotspot-pulse"></span>
+            <span class="hotspot-dot">1</span>
+            <span class="hotspot-tooltip">AI / ML / RAG</span>
+          </button>
+
+          <!-- Hotspot 2: Python Data Analytics -->
+          <button class="hotspot hotspot-desk" data-hotspot="data" aria-label="Inspect Data Analytics Stack">
+            <span class="hotspot-pulse"></span>
+            <span class="hotspot-dot">2</span>
+            <span class="hotspot-tooltip">Data &amp; Python</span>
+          </button>
+
+          <!-- Hotspot 3: Web & Cloud Engineering -->
+          <button class="hotspot hotspot-systems" data-hotspot="webcloud"
+            aria-label="Inspect Full-Stack &amp; Cloud Stack">
+            <span class="hotspot-pulse"></span>
+            <span class="hotspot-dot">3</span>
+            <span class="hotspot-tooltip">Full-Stack &amp; Cloud</span>
+          </button>
+
+          <!-- Hotspot 4: Verified Certifications -->
+          <button class="hotspot hotspot-chair" data-hotspot="certifications"
+            aria-label="Inspect Verified Certifications">
+            <span class="hotspot-pulse"></span>
+            <span class="hotspot-dot">4</span>
+            <span class="hotspot-tooltip">Certifications</span>
+          </button>
+        </div>
+
+        <!-- Hotspot Detail Glass Card -->
+        <div class="lab-detail-panel" id="lab-detail-panel">
+          <div class="panel-header">
+            <span class="panel-badge" id="panel-badge">GENAI, RAG &amp; MACHINE LEARNING</span>
+            <h3 class="panel-title" id="panel-title">LangChain, FAISS, PyTorch &amp; Scikit-learn</h3>
+          </div>
+          <p class="panel-body" id="panel-body">
+            Specialized in building end-to-end AI/ML pipelines: vector database indexing (FAISS), dense sentence
+            embeddings, prompt engineering, RAG document search with sub-15ms retrieval, and classification/regression
+            model evaluation.
+          </p>
+          <div class="panel-items-grid" id="panel-items">
+            <div class="spec-card">
+              <span class="s-label">Retrieval</span>
+              <span class="s-val">FAISS + Sentence Transf.</span>
+            </div>
+            <div class="spec-card">
+              <span class="s-label">Frameworks</span>
+              <span class="s-val">LangChain &amp; PyTorch</span>
+            </div>
+            <div class="spec-card">
+              <span class="s-label">ML &amp; Eval</span>
+              <span class="s-val">Scikit-learn Models</span>
+            </div>
+            <div class="spec-card">
+              <span class="s-label">LLM Methods</span>
+              <span class="s-val">Prompt Eng. &amp; RAG</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills Matrix Breakdown -->
+      <div class="skills-matrix">
+        <div class="matrix-category">
+          <div class="cat-header">
+            <span class="cat-icon">🧠</span>
+            <h4>AI / ML &amp; GenAI Stack</h4>
+          </div>
+          <ul class="skills-list">
+            <li><span class="skill-name">RAG &amp; Vector Search (FAISS)</span><span class="skill-lvl">95%</span></li>
+            <li><span class="skill-name">LangChain &amp; Prompt Eng.</span><span class="skill-lvl">92%</span></li>
+            <li><span class="skill-name">Sentence Transformers</span><span class="skill-lvl">90%</span></li>
+            <li><span class="skill-name">Scikit-learn &amp; PyTorch</span><span class="skill-lvl">88%</span></li>
+            <li><span class="skill-name">Model Evaluation &amp; Metrics</span><span class="skill-lvl">91%</span></li>
+          </ul>
+        </div>
+
+        <div class="matrix-category">
+          <div class="cat-header">
+            <span class="cat-icon">📊</span>
+            <h4>Data Analytics &amp; Python</h4>
+          </div>
+          <ul class="skills-list">
+            <li><span class="skill-name">Python Core &amp; Algorithms</span><span class="skill-lvl">96%</span></li>
+            <li><span class="skill-name">Pandas &amp; NumPy</span><span class="skill-lvl">94%</span></li>
+            <li><span class="skill-name">Matplotlib &amp; Seaborn</span><span class="skill-lvl">92%</span></li>
+            <li><span class="skill-name">SQL Queries &amp; MySQL</span><span class="skill-lvl">87%</span></li>
+            <li><span class="skill-name">Data Cleaning &amp; EDA</span><span class="skill-lvl">95%</span></li>
+          </ul>
+        </div>
+
+        <div class="matrix-category">
+          <div class="cat-header">
+            <span class="cat-icon">⚙️</span>
+            <h4>Software &amp; Cloud Tools</h4>
+          </div>
+          <ul class="skills-list">
+            <li><span class="skill-name">Flask / Django / Streamlit</span><span class="skill-lvl">89%</span></li>
+            <li><span class="skill-name">HTML5, CSS3, JavaScript</span><span class="skill-lvl">90%</span></li>
+            <li><span class="skill-name">C / C++ &amp; Core Java</span><span class="skill-lvl">85%</span></li>
+            <li><span class="skill-name">Firebase &amp; Git / GitHub</span><span class="skill-lvl">92%</span></li>
+            <li><span class="skill-name">VS Code, Colab, Android Studio</span><span class="skill-lvl">94%</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: INTERACTIVE CYBER TERMINAL -->
+    <section id="terminal-section" class="section terminal-section">
+      <div class="section-header">
+        <div class="section-tag">
+          <span class="tag-dot"></span>
+          <span>DEV ENVIRONMENT ACCESS</span>
+        </div>
+        <h2 class="section-title">INTERACTIVE CLI: &lt;AdityaOS /&gt;</h2>
+        <p class="section-subtitle">
+          Direct terminal interface into Aditya’s verified resume, academic milestones, and engineering telemetry. Type
+          commands or click the chips below.
+        </p>
+      </div>
+
+      <div class="terminal-wrapper">
+        <div class="terminal-window" id="terminal-window">
+          <!-- Terminal Titlebar -->
+          <div class="terminal-bar">
+            <div class="bar-buttons">
+              <span class="t-btn btn-close"></span>
+              <span class="t-btn btn-min"></span>
+              <span class="t-btn btn-max"></span>
+            </div>
+            <div class="bar-title">aditya@aiml-dev: ~/profile (v2.6)</div>
+            <div class="bar-status">STATUS: ONLINE 24/7</div>
+          </div>
+
+          <!-- Terminal Output Area -->
+          <div class="terminal-screen" id="terminal-screen" tabindex="0" role="region" aria-label="Terminal Screen">
+            <div class="term-line output-system">
+              [SYSTEM] Initializing Aditya Yadav Kernel v2.6.4...<br />
+              [SYSTEM] Spec: B.Tech CSE (AI &amp; ML) | CGPA: 7.48 | UCER Prayagraj<br />
+              [SYSTEM] GenAI / RAG Pipeline: <span class="term-green">ACTIVE (FAISS 13.6ms)</span><br />
+              [SYSTEM] Type <span class="term-amber">'help'</span> to see available commands or click quick chips below.
+            </div>
+          </div>
+
+          <!-- Terminal Input Row -->
+          <div class="terminal-input-row">
+            <span class="term-prompt">aditya@aiml-dev:~$</span>
+            <input type="text" id="terminal-input" class="terminal-input"
+              placeholder="type 'whoami', 'skills', 'education', 'internships', 'projects', 'certs', 'contact'..."
+              autocomplete="off" spellcheck="false" aria-label="Terminal input" />
+            <button id="terminal-submit-btn" class="term-run-btn" title="Execute command">RUN</button>
+          </div>
+        </div>
+
+        <!-- Terminal Quick Action Chips -->
+        <div class="terminal-quick-chips">
+          <span class="quick-label">QUICK COMMANDS:</span>
+          <button class="t-chip" data-cmd="whoami">whoami</button>
+          <button class="t-chip" data-cmd="skills">skills</button>
+          <button class="t-chip" data-cmd="education">education</button>
+          <button class="t-chip" data-cmd="internships">internships</button>
+          <button class="t-chip" data-cmd="projects">projects</button>
+          <button class="t-chip" data-cmd="certs">certs</button>
+          <button class="t-chip" data-cmd="contact">contact</button>
+          <button class="t-chip" data-cmd="clear">clear</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: CONTACT & COLLABORATION -->
+    <section id="contact" class="section contact-section">
+      <div class="section-header">
+        <div class="section-tag">
+          <span class="tag-dot"></span>
+          <span>GET IN TOUCH DIRECTLY</span>
+        </div>
+        <h2 class="section-title">CONNECT WITH ADITYA YADAV</h2>
+        <p class="section-subtitle">
+          Seeking an entry-level AI/ML Engineer or Data Analyst role. Available for high-impact teams, creative
+          engineering, and production systems.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Welcoming Character Card -->
+        <div class="contact-character-card">
+          <div class="welcome-visual-wrap">
+            <img src="/assets/character/15_welcome_gesture.png" alt="Aditya welcoming you with open arms"
+              class="welcome-char-img" />
+          </div>
+          <div class="welcome-badge">
+            <span class="badge-dot"></span>
+            <span>OPEN FOR ENTRY-LEVEL ROLES &amp; INTERNSHIPS</span>
+          </div>
+          <h3 class="welcome-heading">"Thank you for reviewing my profile."</h3>
+          <p class="welcome-text">
+            Based in <strong>Mumbai, Maharashtra, India</strong>. Eager to contribute to dynamic software
+            engineering and machine learning teams.
+          </p>
+          <div class="direct-contact-item">
+            <span class="d-label">DIRECT EMAIL:</span>
+            <div class="copy-email-box">
+              <span class="email-text" id="display-email">itsadityayadav35@gmail.com</span>
+              <button class="btn-copy-email" id="btn-copy-email" title="Copy Email">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span id="copy-status">Copy</span>
+              </button>
+            </div>
+          </div>
+          <div class="direct-contact-item" style="margin-top: 1rem;">
+            <span class="d-label">PHONE / WHATSAPP:</span>
+            <div class="copy-email-box">
+              <span class="email-text">+91 7267001135</span>
+            </div>
+          </div>
+          <div class="direct-contact-item" style="margin-top: 1rem;">
+            <span class="d-label">SOCIAL &amp; CODE PROFILES:</span>
+            <div style="display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.4rem;">
+              <a href="https://linkedin.com/in/aditya-yadav-aky/" target="_blank" rel="noopener noreferrer"
+                class="chip chip-accent" style="text-decoration: none;">LinkedIn ↗</a>
+              <a href="https://github.com/Aditya-yadav007" target="_blank" rel="noopener noreferrer" class="chip"
+                style="text-decoration: none;">GitHub ↗</a>
+              <a href="https://www.instagram.com/aky007aditya/?hl=en" target="_blank" rel="noopener noreferrer"
+                class="chip" style="text-decoration: none;">Instagram ↗</a>
+            </div>
+          </div>
+          <div class="direct-contact-item" style="margin-top: 1rem;">
+            <span class="d-label">LOCATION:</span>
+            <div class="copy-email-box">
+              <span class="email-text">Mumbai, Maharashtra, India</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Form -->
+        <div class="contact-form-card">
+          <form id="portfolio-contact-form" class="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contact-name">YOUR NAME <span class="req">*</span></label>
+                <input type="text" id="contact-name" name="name" class="form-input"
+                  placeholder="e.g. Hiring Manager / Recruiter" required />
+                <span class="form-error" id="err-name">Please provide your name</span>
+              </div>
+              <div class="form-group">
+                <label for="contact-email">YOUR EMAIL <span class="req">*</span></label>
+                <input type="email" id="contact-email" name="email" class="form-input"
+                  placeholder="recruiter@techcorp.com" required />
+                <span class="form-error" id="err-email">Please enter a valid email address</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-subject">INQUIRY TYPE / OPPORTUNITY</label>
+              <select id="contact-subject" name="subject" class="form-select">
+                <option value="AI / ML Engineer Role (Entry-Level)">AI / ML Engineer Role (Entry-Level)</option>
+                <option value="Data Analyst / Python Developer Role">Data Analyst / Python Developer Role</option>
+                <option value="Software Engineering / AI Internship">Software Engineering / AI Internship</option>
+                <option value="Freelance / Technical Collaboration">Freelance / Technical Collaboration</option>
+                <option value="Networking &amp; Introduction">Networking &amp; Introduction</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-message">YOUR MESSAGE <span class="req">*</span></label>
+              <textarea id="contact-message" name="message" class="form-textarea" rows="4"
+                placeholder="Hello Aditya, we came across your AI/ML projects and would love to discuss an opportunity..."
+                required></textarea>
+              <span class="form-error" id="err-message">Please write a brief message</span>
+            </div>
+
+            <button type="submit" class="btn-submit" id="btn-submit-form">
+              <span class="btn-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </span>
+              <span class="btn-text">Submit</span>
+            </button>
+
+            <div class="form-success-alert" id="form-success-alert" role="alert">
+              <div class="success-icon" id="success-icon">✦</div>
+              <div class="success-body">
+                <strong id="success-title">Transmission Received!</strong>
+                <p id="success-desc">Thank you for reaching out. Aditya will review your message and reply promptly.</p>
+                <div id="success-fallback-action" style="margin-top: 0.6rem; display: none;"></div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Floating Holographic Companion Character Dock -->
+  <aside class="companion-dock" id="companion-dock" aria-label="Interactive Character Companion">
+    <div class="companion-bubble" id="companion-bubble">
+      <span>"Exploring my AI &amp; data realm? Click me to cycle my mood!"</span>
+      <button class="bubble-close" id="bubble-close" aria-label="Close speech bubble">×</button>
+    </div>
+    <div class="companion-avatar-wrap" id="companion-avatar-trigger" role="button" tabindex="0"
+      title="Click to cycle Aditya's pose!">
+      <img src="/assets/character/09_hero_front.png" alt="Aditya avatar companion" class="companion-avatar-img"
+        id="companion-avatar-img" />
+      <div class="companion-status-ring"></div>
+    </div>
+  </aside>
+
+  <!-- Project Details Modal (3D Glass) -->
+  <div class="project-modal-backdrop" id="project-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">×</button>
+      <div class="modal-media-wrap">
+        <img src="" alt="Project Preview" class="modal-img" id="modal-img" />
+      </div>
+      <div class="modal-content">
+        <div class="modal-meta-row">
+          <span class="modal-badge" id="modal-badge">RAG / GENAI</span>
+          <span class="modal-stats" id="modal-stats">13.6ms Retrieval Latency</span>
+        </div>
+        <h3 class="modal-title" id="modal-title">Project Title</h3>
+        <p class="modal-description" id="modal-desc">Project Description</p>
+
+        <div class="modal-architecture-box">
+          <h4>ENGINEERING ARCHITECTURE &amp; HIGHLIGHTS:</h4>
+          <ul id="modal-highlights"></ul>
+        </div>
+
+        <div class="modal-tech-stack" id="modal-tech"></div>
+
+        <div class="modal-actions">
+          <a href="https://github.com/Aditya-yadav007" target="_blank" rel="noopener noreferrer"
+            class="btn-primary modal-action-btn" id="btn-modal-demo" style="text-decoration: none;">
+            <span>GitHub Repository</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </a>
+          <a href="https://linkedin.com/in/aditya-yadav-aky/" target="_blank" rel="noopener noreferrer"
+            class="btn-secondary modal-action-btn" id="btn-modal-github" style="text-decoration: none;">
+            <span>LinkedIn Profile</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="f-brand">ADITYA YADAV <span>/ AI &amp; ML ENGINEER</span></div>
+        <p>B.Tech CSE (AI &amp; ML) • United College of Engineering &amp; Research, Prayagraj.</p>
+      </div>
+      <div class="footer-center">
+        <div class="footer-links">
+          <a href="#hero">Back to Top</a>
+          <a href="#journey">Life Journey</a>
+          <a href="#projects">AI Projects</a>
+          <a href="#lab">The Lab</a>
+          <a href="#terminal-section">Terminal</a>
+        </div>
+      </div>
+      <div class="footer-right">
+        <div class="f-copy">&copy; 2026 Aditya Yadav. Engineered with Three.js &amp; Motion.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

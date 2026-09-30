@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Page Not Found | Aditya Yadav</title>
+  <meta name="robots" content="noindex" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #03060c;
+      color: #f0f4fc;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      padding: 2rem;
+      max-width: 520px;
+    }
+
+    .glitch-code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(5rem, 15vw, 10rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, #00e5ff, #d946ef);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      animation: pulse 2s ease-in-out infinite alternate;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: #8b9bb4;
+      margin: 1rem 0 2rem;
+    }
+
+    .home-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.15), rgba(217, 70, 239, 0.15));
+      border: 1px solid rgba(0, 229, 255, 0.4);
+      border-radius: 9999px;
+      color: #00e5ff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .home-btn:hover {
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.3), rgba(217, 70, 239, 0.3));
+      border-color: #00e5ff;
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px rgba(0, 229, 255, 0.3);
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.8; }
+      100% { opacity: 1; }
+    }
+  </style>
+  <!-- GitHub Pages SPA redirect: reroute all 404s back to index.html -->
+  <script>
+    // Single Page App redirect for GitHub Pages
+    // Preserves the path so client-side routing can handle it
+    const path = window.location.pathname;
+    const base = '/eradityayadav.com/';
+    if (path !== base && path !== base + 'index.html') {
+      window.location.replace(base);
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="glitch-code">404</div>
+    <p class="subtitle">This page has drifted into the void.<br />Let's get you back to mission control.</p>
+    <a href="/eradityayadav.com/" class="home-btn">
+      <span>←</span>
+      <span>Return to Portfolio</span>
+    </a>
+  </div>
+</body>
+</html>
