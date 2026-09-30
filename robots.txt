@@ -1,0 +1,7 @@
+# Aditya Yadav — 3D Spatial Portfolio
+# https://aditya-yadav007.github.io/eradityayadav.com/
+
+User-agent: *
+Allow: /
+
+Sitemap: https://aditya-yadav007.github.io/eradityayadav.com/sitemap.xml
