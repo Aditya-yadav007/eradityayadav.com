@@ -36,6 +36,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // 5b. Fix resume download links with Vite base URL
+  // Vite does NOT rewrite <a href> for public assets, so we prepend BASE_URL at runtime
+  const base = import.meta.env.BASE_URL;
+  document.querySelectorAll('a[download]').forEach(link => {
+    const href = link.getAttribute('href');
+    if (href && href.startsWith('/') && !href.startsWith(base)) {
+      link.setAttribute('href', base + href.slice(1));
+    }
+  });
+
   // Bind subtle hover sounds to interactive elements
   const hoverSoundTargets = document.querySelectorAll(
     'a, button, .project-card, .chapter-card, .hotspot, .pose-chip, .t-chip'
@@ -262,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalHighlights = document.getElementById('modal-highlights');
   const modalTech = document.getElementById('modal-tech');
   const btnModalDemo = document.getElementById('btn-modal-demo');
-  const btnModalGithub = document.getElementById('btn-modal-github');  const base = import.meta.env.BASE_URL;
+  const btnModalGithub = document.getElementById('btn-modal-github');
   const projectDetails = {
     docchat: {
       title: "DocChat — AI Intelligent Document Q&A Chatbot",

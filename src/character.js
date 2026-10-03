@@ -101,14 +101,20 @@ export class CharacterSystem {
 
   // 2. HERO POSE CHIPS
   bindPoseChips() {
+    const base = import.meta.env.BASE_URL;
     this.poseChips.forEach((chip) => {
       chip.addEventListener('click', () => {
         soundEngine.playClick();
         this.poseChips.forEach(c => c.classList.remove('active'));
         chip.classList.add('active');
 
-        const newSrc = chip.getAttribute('data-pose-src');
+        let newSrc = chip.getAttribute('data-pose-src');
         if (this.heroCharImg && newSrc) {
+          // Prepend Vite base URL for GitHub Pages compatibility
+          // data-pose-src has paths like "/assets/character/..." — strip leading "/" to avoid double-slash
+          if (newSrc.startsWith('/')) {
+            newSrc = base + newSrc.slice(1);
+          }
           this.heroCharImg.style.opacity = '0';
           this.heroCharImg.style.transform = 'scale(0.95)';
           setTimeout(() => {
